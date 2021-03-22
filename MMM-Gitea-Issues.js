@@ -46,7 +46,7 @@ Module.register("MMM-Gitea-Issues", {
          pillDiv.classList.add('w-20');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
-            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv0', 'dib');
+            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv2', 'dib');
             tagP.classList.add(this.textColor(tag['color']));
             tagP.style.backgroundColor = `#${tag['color']}`;
             tagP.textContent = tag['name'];
