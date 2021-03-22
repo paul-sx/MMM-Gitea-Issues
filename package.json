@@ -1,0 +1,29 @@
+{
+  "name": "mmm-gitea-issues",
+  "version": "1.0.0",
+  "description": "Magic Mirror Module for Gitea Issues",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paul-sx/mmm-gitea-issues.git"
+  },
+  "keywords": [
+    "magicmirror",
+    "gitea"
+  ],
+  "author": "Paul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paul-sx/mmm-gitea-issues/issues"
+  },
+  "homepage": "https://github.com/paul-sx/mmm-gitea-issues#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "request": "^2.88.2",
+    "tachyons": "^4.12.0"
+  }
+}

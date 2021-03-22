@@ -1,0 +1,101 @@
+/*
+ * Gitea Issues MagicMirror2 Module
+ * Distributed under the MIT License
+ *
+ */
+
+'use strict';
+
+Module.register("MMM-Gitea-Issues", {
+   getStyles: function() {
+      return ['tachyons.min.css'];
+   },
+
+
+   defaults: {
+      "repos": [
+         'https://host.example.com/owner/repo'
+      ],
+      "token": 'token',
+      'updateInterval': 10,
+      'fadeSpeed': 100,
+      'showBody': false
+   },
+
+   start: function() {
+      this.getIssues();
+      this.scheduleUpdate();
+   },
+
+   issueList: [],
+
+   getDom: function () {
+      var wrapper = document.createElement('section');
+      wrapper.classList.add("mw7", "left", "avenir", "white-70");
+      /*var header = document.createElement('h2');
+      header.classList.add("baskerville",  "f3", "fw1", "ph0", "pv0");
+      header.textContent = "Issues";
+      wrapper.appendChild(header);
+      */
+      this.issueList.forEach( issue => {
+         var article = document.createElement('article');
+         article.classList.add("bt", "bb", "b--white-50");
+         var topDiv = document.createElement('div');
+         topDiv.classList.add('flex', 'flex-row');
+         var pillDiv = document.createElement('div');
+         pillDiv.classList.add('w-20');
+         issue['labels'].forEach( tag => {
+            var tagP = document.createElement('p');
+            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv0', 'dib', 'white');
+            tagP.style.backgroundColor = `#${tag['color']}`;
+            tagP.textContent = tag['name'];
+            pillDiv.appendChild(tagP);
+         } );
+         topDiv.appendChild(pillDiv);
+         var textDiv = document.createElement('div');
+         textDiv.classList.add('w-80');
+         var titleH = document.createElement('h1');
+         titleH.classList.add('f5', 'fw1', 'baskerville', 'mt0', 'lh-title');
+         titleH.textContent = issue['title'];
+         textDiv.appendChild(titleH);
+         if (this.config.showBody == true) {
+            var bodyP = document.createElement('p');
+            bodyP.classList.add('f7', 'lh-copy');
+            bodyP.textContent = issue['body'];
+            textDiv.appendChild(bodyP);
+         }
+         var ownerP = document.createElement('p');
+         ownerP.classList.add('f7', 'mv0', 'lh-copy');
+         ownerP.textContent = `${issue['user']['username']} in ${issue['repository']['full_name']}`;
+         textDiv.appendChild(ownerP);
+         topDiv.appendChild(textDiv);
+         article.appendChild(topDiv);
+         wrapper.appendChild(article);
+      } );
+      return wrapper;
+   },
+
+   scheduleUpdate: function(delay) {
+      var nextLoad = this.config.updateInterval * 60000;
+      if (typeof delay !== "undefined" && delay >=0) {
+         nextLoad = delay;
+      }
+      var self = this;
+      setInterval(function () {
+         self.getIssues();
+      }, nextLoad);
+   },
+
+   getIssues: function () {
+      var payload = this.config;
+      this.sendSocketNotification("GET_ISSUES", payload);
+   },
+
+   socketNotificationReceived: function(notification, payload) {
+      if (notification === "ISSUES") {
+         this.issueList = payload;
+         this.updateDom(self.config.fadeSpeed);
+      }
+   }
+
+});
