@@ -31,7 +31,7 @@ Module.register("MMM-Gitea-Issues", {
 
    getDom: function () {
       var wrapper = document.createElement('section');
-      wrapper.classList.add("mw7", "left", "avenir", "white-70");
+      wrapper.classList.add("mw7", "tl", "white-70");
       /*var header = document.createElement('h2');
       header.classList.add("baskerville",  "f3", "fw1", "ph0", "pv0");
       header.textContent = "Issues";
@@ -46,7 +46,8 @@ Module.register("MMM-Gitea-Issues", {
          pillDiv.classList.add('w-20');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
-            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv0', 'dib', 'white');
+            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv0', 'dib');
+            tagP.classList.add(this.textColor(tag['color']));
             tagP.style.backgroundColor = `#${tag['color']}`;
             tagP.textContent = tag['name'];
             pillDiv.appendChild(tagP);
@@ -96,6 +97,32 @@ Module.register("MMM-Gitea-Issues", {
          this.issueList = payload;
          this.updateDom(self.config.fadeSpeed);
       }
-   }
+   },
+
+   textColor: function (backgroundColor) {
+      var result = /^#?([a-f\d]{2}){3}$/i.exec(backgroundColor);
+      if (! result) {return 'white';}
+      var rgb = [
+         parseInt(result[1], 16),
+         parseInt(result[2], 16),
+         parseInt(result[3], 16)
+      ];
+      rgb = rgb.map(function(c) {
+         c = c / 255.0;
+         if (c <= 0.03928) {
+            c = c / 12.92;
+         } else {
+            c = ((c+0.055)/1.055) ^ 2.4;
+         }
+         return c;
+      });
+      var L = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+
+      if ( L > 0.179 ) {
+         return "black";
+      }
+      return "white";
+
+   },
 
 });
