@@ -54,7 +54,7 @@ Module.register("MMM-Gitea-Issues", {
          } );
          topDiv.appendChild(pillDiv);
          var textDiv = document.createElement('div');
-         textDiv.classList.add('w-80');
+         //textDiv.classList.add('w-80');
          var titleH = document.createElement('h1');
          titleH.classList.add('f5', 'fw1', 'baskerville', 'mt0', 'lh-title');
          titleH.textContent = issue['title'];
