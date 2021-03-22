@@ -31,7 +31,7 @@ Module.register("MMM-Gitea-Issues", {
 
    getDom: function () {
       var wrapper = document.createElement('section');
-      wrapper.classList.add("mw7", "tl", "white-70");
+      wrapper.classList.add("tl", "white-70");
       /*var header = document.createElement('h2');
       header.classList.add("baskerville",  "f3", "fw1", "ph0", "pv0");
       header.textContent = "Issues";
