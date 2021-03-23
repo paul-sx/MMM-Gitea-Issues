@@ -39,7 +39,7 @@ Module.register("MMM-Gitea-Issues", {
       */
       this.issueList.forEach( issue => {
          var article = document.createElement('article');
-         article.classList.add("bt", "bb", "b--white-50", "pr2");
+         article.classList.add("br4", "b--white-50", "mr3", "mb2");
          var topDiv = document.createElement('div');
          topDiv.classList.add('flex', 'flex-row');
          var pillDiv = document.createElement('div');
