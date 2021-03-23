@@ -43,7 +43,7 @@ Module.register("MMM-Gitea-Issues", {
          var topDiv = document.createElement('div');
          topDiv.classList.add('flex', 'flex-row');
          var pillDiv = document.createElement('div');
-         pillDiv.classList.add('flex', 'flex-wrap', 'mw4', 'w-10');
+         pillDiv.classList.add('flex', 'flex-wrap', 'w4');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
             tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'ma0', 'h1', 'lh-solid', 'b');
@@ -56,7 +56,7 @@ Module.register("MMM-Gitea-Issues", {
          var textDiv = document.createElement('div');
          textDiv.classList.add('mw6');
          var titleH = document.createElement('h1');
-         titleH.classList.add('f5', 'fw1', 'baskerville', 'mt0', 'lh-title');
+         titleH.classList.add('f5', 'fw1', 'baskerville', 'mv0', 'lh-title');
          titleH.textContent = issue['title'];
          textDiv.appendChild(titleH);
          if (this.config.showBody == true) {
