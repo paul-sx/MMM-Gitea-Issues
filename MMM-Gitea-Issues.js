@@ -43,7 +43,7 @@ Module.register("MMM-Gitea-Issues", {
          var topDiv = document.createElement('div');
          topDiv.classList.add('flex', 'flex-row');
          var pillDiv = document.createElement('div');
-         pillDiv.classList.add('flex', 'flex-wrap', 'w4');
+         pillDiv.classList.add('flex', 'flex-wrap', 'pr4');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
             tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'ma0', 'h1', 'lh-solid', 'b');
