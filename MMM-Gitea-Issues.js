@@ -43,10 +43,10 @@ Module.register("MMM-Gitea-Issues", {
          var topDiv = document.createElement('div');
          topDiv.classList.add('flex', 'flex-row');
          var pillDiv = document.createElement('div');
-         pillDiv.classList.add('flex', 'flex-wrap', 'mw4');
+         pillDiv.classList.add('flex', 'flex-wrap', 'mw4', 'w-10');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
-            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mb2');
+            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'ma0', 'h1', 'lh-solid', 'b');
             tagP.classList.add(this.textColor(tag['color']));
             tagP.style.backgroundColor = `#${tag['color']}`;
             tagP.textContent = tag['name'];
