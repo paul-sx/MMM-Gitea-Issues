@@ -31,7 +31,7 @@ Module.register("MMM-Gitea-Issues", {
 
    getDom: function () {
       var wrapper = document.createElement('section');
-      wrapper.classList.add("tl", "white-70");
+      wrapper.classList.add("tl", "white-70", 'flex', 'flex-wrap');
       /*var header = document.createElement('h2');
       header.classList.add("baskerville",  "f3", "fw1", "ph0", "pv0");
       header.textContent = "Issues";
@@ -43,10 +43,10 @@ Module.register("MMM-Gitea-Issues", {
          var topDiv = document.createElement('div');
          topDiv.classList.add('flex', 'flex-row');
          var pillDiv = document.createElement('div');
-         pillDiv.classList.add('w-20');
+         pillDiv.classList.add('flex', 'flex-wrap', 'mw4');
          issue['labels'].forEach( tag => {
             var tagP = document.createElement('p');
-            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mv2', 'dib');
+            tagP.classList.add('f5', 'br-pill', 'ph3', 'pv0', 'mb2');
             tagP.classList.add(this.textColor(tag['color']));
             tagP.style.backgroundColor = `#${tag['color']}`;
             tagP.textContent = tag['name'];
@@ -54,7 +54,7 @@ Module.register("MMM-Gitea-Issues", {
          } );
          topDiv.appendChild(pillDiv);
          var textDiv = document.createElement('div');
-         //textDiv.classList.add('w-80');
+         textDiv.classList.add('mw6');
          var titleH = document.createElement('h1');
          titleH.classList.add('f5', 'fw1', 'baskerville', 'mt0', 'lh-title');
          titleH.textContent = issue['title'];
