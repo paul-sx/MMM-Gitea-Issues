@@ -33,7 +33,8 @@ modules: [
       ]
    }
 }
-]```
+]
+```
 
 ### Parameters
 
