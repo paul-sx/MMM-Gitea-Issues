@@ -16,6 +16,9 @@ Module.register("MMM-Gitea-Issues", {
       "repos": [
          'https://host.example.com/owner/repo'
       ],
+      "ignoreTags": [
+         "tag name"
+      ],
       "token": 'token',
       'updateInterval': 10,
       'fadeSpeed': 100,
@@ -38,6 +41,7 @@ Module.register("MMM-Gitea-Issues", {
       wrapper.appendChild(header);
       */
       this.issueList.forEach( issue => {
+         var ignoreIssue = false;
          var article = document.createElement('article');
          article.classList.add("br4",  "ba", "bw1", "pa2", "b--white-50", "mr3", "mb2");
          var topDiv = document.createElement('div');
@@ -51,6 +55,9 @@ Module.register("MMM-Gitea-Issues", {
             tagP.style.backgroundColor = `#${tag['color']}`;
             tagP.textContent = tag['name'];
             pillDiv.appendChild(tagP);
+            if ( this.config.ignoreTags.includes(tag['name']) ) {
+               ignoreIssue = true;
+            }
          } );
          topDiv.appendChild(pillDiv);
          var textDiv = document.createElement('div');
@@ -71,7 +78,9 @@ Module.register("MMM-Gitea-Issues", {
          textDiv.appendChild(ownerP);
          topDiv.appendChild(textDiv);
          article.appendChild(topDiv);
-         wrapper.appendChild(article);
+         if (!ignoreIssue) {
+            wrapper.appendChild(article);
+         }
       } );
       return wrapper;
    },
